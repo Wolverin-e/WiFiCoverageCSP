@@ -17,7 +17,7 @@ class WiFiCoverageProblem():
 		self.initial_state = State(wifi_coords=initial_wifi_coords)
 
 	def check_constraints(self, state=State()):
-		return (state.evaluate() == self.goal_val)
+		return (state.evaluate() >= self.goal_val)
 
 	def show_solution(self, solution_state):
 		grid = [[ ' ' for x in range(self.grid_width) ] for y in range(self.grid_height)]
@@ -25,7 +25,7 @@ class WiFiCoverageProblem():
 		print(solution_state)
 		for x, y in solution_state.wifi_coords:
 			grid[x][y] = 'X'
-		
+
 		for x, y in self.device_coords:
 			grid[x][y] = '*'
 

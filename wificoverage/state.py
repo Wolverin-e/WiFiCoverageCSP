@@ -27,36 +27,65 @@ class State:
 
 	def evaluate(self):
 		# BFS over WIFI-Coords & then DEVICE CHECK
-		return random.randint(0, 100)
+		# return random.randint(0, 100)
+
+		euclidean = lambda a, b: ( (a[0]-b[0])**2 + (a[1]-b[1])**2 )**0.5
+
+		val = 0
+		#device check
+		for device in self.device_coords:
+			for wifi in self.wifi_coords:
+				if(euclidean(device, wifi) <= self.wifi_range):
+					val+=1
+					break
+		
+		# wifi-range-check
+		wifis = list(self.wifi_coords)
+		if(euclidean(wifis[0], wifis[1]) <= 2*self.wifi_range):
+			val+=4
+		
+		return val
+
 
 	def get_max_valued_successor(self):
 		# Check out all the combitions
 		# |wifi_coords|^|direction_vectors|
+		# print("CALLED OF", self)
 
 		max_val = -1
-		max_state = ()
+		max_state = State()
 
 
 		get_sum = lambda a, b: (a[0]+b[0], a[1]+b[1])
 		depth_limit = len(self.wifi_coords)-1
+		assert(depth_limit>0)
 
 		def go_recursive(depth=0, directions_vector=[]):
-			print(directions_vector)
 			nonlocal max_val
 			nonlocal max_state
 			if depth==depth_limit:
 				for dir_vec in self.direction_vectors:
 					directions_vector.append(dir_vec)
-					print(directions_vector)
 
-					state = tuple([get_sum(a, b) for (a, b) in zip(directions_vector, self.wifi_coords)])
-					
-					print(state)
-					end_state = State(state)
-					end_state_eval = end_state.evaluate()
-					if(end_state_eval > max_val):
-						max_val = end_state_eval
-						max_state = end_state
+					new_wifi_coords = tuple([get_sum(a, b) for (a, b) in zip(directions_vector, self.wifi_coords)])
+
+					flag = 0
+					for x, y in new_wifi_coords:
+						if(x>=self.grid_width or x<0 or y>=self.grid_height or y<0):
+							# print(directions_vector)
+							flag = 1
+
+					if (not flag & len(set(new_wifi_coords)) < len(new_wifi_coords)):
+						print("Detected:", new_wifi_coords)
+						flag = 1
+
+					if(not flag):
+						end_state = State(new_wifi_coords)
+						end_state_eval = end_state.evaluate()
+						# print(end_state, end_state_eval)
+						if(end_state_eval >= max_val):
+							max_val = end_state_eval
+							max_state = end_state
 
 					directions_vector.pop()
 			else:
@@ -65,6 +94,6 @@ class State:
 					go_recursive(depth+1, directions_vector)
 					directions_vector.pop()
 
-		go_recursive(depth=0, directions_vector=[])
+		go_recursive()
 		return max_state
 

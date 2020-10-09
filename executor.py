@@ -6,7 +6,7 @@ problem = WiFiCoverageProblem(
 	grid_width=10,
 	wifi_range=3,
 	goal_val=7,
-	device_coords=((2, 2), (3, 3), (5, 5)),
+	device_coords=((2, 2), (3, 3), (7, 6)),
 	initial_wifi_coords=((1, 2), (3, 7))
 )
 # WiFi count
