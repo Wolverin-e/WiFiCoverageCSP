@@ -48,9 +48,8 @@ class State:
                 visited.add(current_processing_node)
 
                 for neigbour in get_neighbours(current_processing_node):
-                    if((neigbour not in visited) and
-                       (neigbour not in processing_queue)):
-
+                    if(neigbour not in visited and
+                            neigbour not in processing_queue):
                         processing_queue.append(neigbour)
 
             return visited
@@ -69,52 +68,36 @@ class State:
     def get_max_valued_successor(self):
         # Check out all the combitions: |wifi_coords|^|direction_vectors|
 
+        def get_sum(a, b):
+            return (a[0]+b[0], a[1]+b[1])
+
+        def is_in_grid(coord):
+            return not (coord[0] >= self.grid_width or coord[0] < 0 or
+                        coord[1] >= self.grid_height or coord[1] < 0)
+
         max_val = -1
         max_state = State()
-        def get_sum(a, b): return (a[0]+b[0], a[1]+b[1])
-        depth_limit = len(self.wifi_coords)-1
+        depth_limit = len(self.wifi_coords)
         assert(depth_limit > 0)
 
-        def go_recursive(depth=0, directions_vector=[]):
+        def go_recursive(depth=0, partial_state=[]):
             nonlocal max_val
             nonlocal max_state
+
             if depth == depth_limit:
-                for dir_vec in self.direction_vectors:
-                    directions_vector.append(dir_vec)
-
-                    new_wifi_coords = tuple(
-                        [
-                            get_sum(a, b) for (a, b) in zip(
-                                directions_vector,
-                                self.wifi_coords
-                            )
-                        ]
-                    )
-
-                    flag = 0
-                    for x, y in new_wifi_coords:
-                        if((x >= self.grid_width or x < 0) or
-                           (y >= self.grid_height or y < 0)):
-                            # print(directions_vector)
-                            flag = 1
-
-                    if((not flag) and
-                       (len(set(new_wifi_coords)) < len(new_wifi_coords))):
-                        print("Detected:", new_wifi_coords)
-                        flag = 1
-
-                    if(not flag):
-                        end_state = State(new_wifi_coords)
-                        if(end_state.val >= max_val):
-                            max_val = end_state.val
-                            max_state = end_state
-
-                    directions_vector.pop()
+                new_wifi_coords = tuple(partial_state)
+                end_state = State(new_wifi_coords)
+                if(end_state.val >= max_val):
+                    max_val = end_state.val
+                    max_state = end_state
             else:
                 for dir_vec in self.direction_vectors:
-                    directions_vector.append(dir_vec)
-                    go_recursive(depth+1, directions_vector)
-                    directions_vector.pop()
+                    next_vec = get_sum(dir_vec, self.wifi_coords[depth])
+                    if (is_in_grid(next_vec) and
+                            (next_vec not in partial_state)):
+                        partial_state.append(next_vec)
+                        go_recursive(depth+1, partial_state)
+                        partial_state.pop()
 
         go_recursive()
         return max_state

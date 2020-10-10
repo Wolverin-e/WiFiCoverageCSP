@@ -35,8 +35,10 @@ class WiFiCoverageProblem():
         return State(tuple(state))
 
     def _show_grid_in_terminal(self, state=State()):
-        grid = [[' ' for x in range(self.grid_width)]
-                for y in range(self.grid_height)]
+        grid = [
+            [' ' for x in range(self.grid_width)]
+            for y in range(self.grid_height)
+        ]
 
         print(state)
         for x, y in state.wifi_coords:
@@ -45,11 +47,13 @@ class WiFiCoverageProblem():
         for x, y in self.device_coords:
             grid[x][y] = '*'
 
-        for y in range(self.grid_height):
+        for y in range(self.grid_height-1, -1, -1):
             print("|", end="")
             for x in range(self.grid_width):
                 print(grid[x][y], end="")
             print("|")
+
+        print()
 
     def _show_graph(self, state=State(), pause=None):
         plt.cla()
@@ -73,6 +77,7 @@ class WiFiCoverageProblem():
 
     def show_debug(self, debug_state):
         self._show_grid_in_terminal(debug_state)
+        # self._show_graph(debug_state, 0.25)
 
     def show_final_sol(self, solution_state):
         self._show_graph(solution_state)
