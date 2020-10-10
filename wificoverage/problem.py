@@ -1,5 +1,6 @@
 from .state import State
 import random
+import matplotlib.pyplot as plt
 
 class WiFiCoverageProblem():
 
@@ -30,16 +31,50 @@ class WiFiCoverageProblem():
 			grid[x][y] = '*'
 
 		for y in range(self.grid_height):
+			print("|", end="")
 			for x in range(self.grid_width):
 				print(grid[x][y], end="")
-			print()
+			print("|")
+
+		# plt.cla()
+		# x, y = zip(*self.device_coords)
+		# plt.plot(x, y, 'ro')
+		# x, y = zip(*solution_state.wifi_coords)
+		# plt.plot(x, y, 'b^')
+		# plt.axis([0, 10, 0, 10])
+
+		# ax = plt.gca()
+		# for coord in solution_state.wifi_coords:
+		# 	circle = plt.Circle(coord, self.wifi_range, color='g', fill=False)
+		# 	ax.add_artist(circle)
+		# 	ax.set_aspect('equal', 'box')
+
+		# plt.show(block=False)
+		# plt.pause(0.22)
+		# plt.close()
+	
+	def show_final_sol(self, solution_state):
+		plt.cla()
+		x, y = zip(*self.device_coords)
+		plt.plot(x, y, 'ro')
+		x, y = zip(*solution_state.wifi_coords)
+		plt.plot(x, y, 'b^')
+		plt.axis([0, 10, 0, 10])
+
+		ax = plt.gca()
+		for coord in solution_state.wifi_coords:
+			circle = plt.Circle(coord, self.wifi_range, color='g', fill=False)
+			ax.add_artist(circle)
+			ax.set_aspect('equal', 'box')
+
+		plt.show()
 
 	def get_initial_state(self):
 		return self.initial_state
 
 	def get_random_state(self):
 		state = []
-		for i in range(2):
+		for i in range(len(self.initial_state.wifi_coords)):
 			state.append((
 				random.randrange(0, self.grid_width),
 				random.randrange(0, self.grid_height)

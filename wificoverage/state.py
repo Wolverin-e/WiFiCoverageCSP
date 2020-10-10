@@ -21,7 +21,7 @@ class State:
 	def __str__(self):
 		state = "WiFi_coords: "+str(self.wifi_coords)
 		return state
-	
+
 	def clone(self):
 		return State(deepcopy(self.wifi_coords))
 
@@ -38,12 +38,33 @@ class State:
 				if(euclidean(device, wifi) <= self.wifi_range):
 					val+=1
 					break
-		
-		# wifi-range-check
-		wifis = list(self.wifi_coords)
-		if(euclidean(wifis[0], wifis[1]) <= 2*self.wifi_range):
-			val+=4
-		
+
+		unvisited_nodes = set(self.wifi_coords)
+		get_neighbours = lambda a: [x for x in unvisited_nodes if euclidean(x, a)<=2*self.wifi_range]
+
+		def bfs(start_node):
+			visited = set()
+			processing_queue = [start_node]
+
+			while(processing_queue):
+				current_processing_node = processing_queue.pop(0)
+				visited.add(current_processing_node)
+
+				for neigbour in get_neighbours(current_processing_node):
+					if (neigbour not in visited) and (neigbour not in processing_queue):
+						processing_queue.append(neigbour)
+
+			return visited
+
+		while unvisited_nodes:
+			visited = bfs(next(iter(unvisited_nodes)))
+			unvisited_nodes.difference_update(visited)
+
+			if(len(visited)>1):
+				val+=len(visited)-1
+			else:
+				assert(len(visited) == 1)
+
 		return val
 
 

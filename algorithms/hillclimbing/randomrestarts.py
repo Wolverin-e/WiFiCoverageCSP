@@ -7,6 +7,7 @@ class HillClimbingRandomRestarts:
 		while(True):
 			state = self.problem.get_random_state()
 			probable_sol = self.solve_util(state)
+			self.problem.show_solution(probable_sol)
 			if(self.problem.check_constraints(probable_sol)):
 				return probable_sol
 
