@@ -1,6 +1,7 @@
 from .state import State
 import random
 import matplotlib.pyplot as plt
+import numpy as np
 
 
 class WiFiCoverageProblem():
@@ -61,15 +62,18 @@ class WiFiCoverageProblem():
         plt.plot(x, y, 'ro')
         x, y = zip(*state.wifi_coords)
         plt.plot(x, y, 'b^')
-        plt.axis([0, 10, 0, 10])
+        plt.axis([0, self.grid_width, 0, self.grid_height])
+        plt.grid()
 
         ax = plt.gca()
+        ax.set_xticks(np.arange(0, self.grid_width, 1))
+        ax.set_yticks(np.arange(0, self.grid_height, 1))
         for coord in state.wifi_coords:
             circle = plt.Circle(coord, self.wifi_range, color='g', fill=False)
             ax.add_artist(circle)
             ax.set_aspect('equal', 'box')
 
-        if(pause is not None):
+        if pause is not None:
             plt.show(block=False)
             plt.pause(0.5)
         else:
