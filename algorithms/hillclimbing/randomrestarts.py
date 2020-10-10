@@ -12,13 +12,13 @@ class HillClimbingRandomRestarts:
                 return probable_sol
 
     def solve_util(self, state):
-        current = state  # Current Node might be assigned via problem
+        # Current Node might be assigned via problem
+        current = state
+        neighbour = current.get_max_valued_successor()
 
-        while(True):
+        # CHECK IF CURRENT_NODE LOCAL MAXIMA
+        while(neighbour.val > current.val):
+            current = neighbour
             neighbour = current.get_max_valued_successor()
 
-            # CHECK IF CURRENT_NODE LOCAL MAXIMA
-            if(neighbour.val <= current.val):
-                return current
-
-            current = neighbour
+        return current
