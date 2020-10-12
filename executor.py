@@ -1,17 +1,14 @@
-from wificoverage.problem import WiFiCoverageProblem
-from algorithms.hillclimbing.rrhillclimbing import HillClimbingRandomRestarts
-from algorithms.hillclimbing.rrescapingshoulders import (
+from wificoverage.problems import (
+    get_small_problem_discrete_eval,
+    get_small_problem_less_descrete_eval
+)
+from algorithms.hillclimbing import (
+    HillClimbingRandomRestarts,
     RandomRestartEscapingShoulders
 )
 
-problem = WiFiCoverageProblem(
-    grid_height=10,
-    grid_width=10,
-    wifi_range=2,
-    device_coords=((2, 2), (2, 7), (9, 7), (9, 5), (9, 2)),
-    initial_wifi_coords=((1, 2), (3, 7), (6, 7), (4, 5))
-)
+problem = get_small_problem_less_descrete_eval()
+solver = RandomRestartEscapingShoulders
 
-# solver = HillClimbingRandomRestarts(problem)
-solver = RandomRestartEscapingShoulders(problem)
-problem.show_final_sol(solver.solve())
+problem_solver = solver(problem)
+problem.show_final_sol(problem_solver.solve())

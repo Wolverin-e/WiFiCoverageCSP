@@ -10,6 +10,7 @@ class HillClimbing:
 
         # CHECK IF CURRENT_NODE LOCAL MAXIMA
         while(neighbour.val > current.val):
+            self.problem.show_debug(current)
             current = neighbour
             neighbour = current.get_max_valued_successor()
 

@@ -1,4 +1,5 @@
 from .state import State
+from .evaluator import less_discrete_evaluator
 import random
 import matplotlib.pyplot as plt
 import numpy as np
@@ -7,16 +8,19 @@ import numpy as np
 class WiFiCoverageProblem:
 
     def __init__(self, grid_height=0, grid_width=0, wifi_range=0,
-                 device_coords=(), initial_wifi_coords=()):
+                 device_coords=(), initial_wifi_coords=(), goal_val=0,
+                 evaluator=None):
         State.grid_height = grid_height
         State.grid_width = grid_width
         State.wifi_range = wifi_range
         State.device_coords = device_coords
+        State.evaluator = evaluator or less_discrete_evaluator
 
         self.grid_height = grid_height
         self.grid_width = grid_width
         self.wifi_range = wifi_range
-        self.goal_val = len(device_coords)+len(initial_wifi_coords)-1
+        self.goal_val = (goal_val or
+                         (len(device_coords)+len(initial_wifi_coords)-1))
         self.device_coords = device_coords
         self.initial_state = State(wifi_coords=initial_wifi_coords)
 
@@ -79,9 +83,11 @@ class WiFiCoverageProblem:
         else:
             plt.show()
 
-    def show_debug(self, debug_state):
-        # self._show_grid_in_terminal(debug_state)
-        self._show_graph(debug_state, 0.25)
+    def show_debug(self, debug_state, show_graph=False, sleep=0.25):
+        if show_graph:
+            self._show_graph(debug_state, sleep)
+        else:
+            self._show_grid_in_terminal(debug_state)
 
     def show_final_sol(self, solution_state):
         self._show_graph(solution_state)
