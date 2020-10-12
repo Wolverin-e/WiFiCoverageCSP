@@ -1,5 +1,8 @@
 from wificoverage.problem import WiFiCoverageProblem
-from algorithms.hillclimbing.randomrestarts import HillClimbingRandomRestarts
+from algorithms.hillclimbing.rrhillclimbing import HillClimbingRandomRestarts
+from algorithms.hillclimbing.rrescapingshoulders import (
+    RandomRestartEscapingShoulders
+)
 
 problem = WiFiCoverageProblem(
     grid_height=10,
@@ -9,5 +12,6 @@ problem = WiFiCoverageProblem(
     initial_wifi_coords=((1, 2), (3, 7), (6, 7), (4, 5))
 )
 
-solver = HillClimbingRandomRestarts(problem)
+# solver = HillClimbingRandomRestarts(problem)
+solver = RandomRestartEscapingShoulders(problem)
 problem.show_final_sol(solver.solve())

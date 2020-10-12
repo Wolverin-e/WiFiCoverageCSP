@@ -4,7 +4,7 @@ import matplotlib.pyplot as plt
 import numpy as np
 
 
-class WiFiCoverageProblem():
+class WiFiCoverageProblem:
 
     def __init__(self, grid_height=0, grid_width=0, wifi_range=0,
                  device_coords=(), initial_wifi_coords=()):
@@ -80,8 +80,8 @@ class WiFiCoverageProblem():
             plt.show()
 
     def show_debug(self, debug_state):
-        self._show_grid_in_terminal(debug_state)
-        # self._show_graph(debug_state, 0.25)
+        # self._show_grid_in_terminal(debug_state)
+        self._show_graph(debug_state, 0.25)
 
     def show_final_sol(self, solution_state):
         self._show_graph(solution_state)
