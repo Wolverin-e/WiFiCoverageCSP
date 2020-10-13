@@ -3,8 +3,8 @@
 Course Project of Artificial Intelligence for a new Constraints Satisfaction Problem
 
 <p align="center">
-	<img src=".readme/large_sol5b.png" height="400px"> <br>
-	D=12 | K=8 | R=8 | HxW=35x35<br>
+	<img src=".readme/intro.gif" height="400px"> <br>
+	D=12 | K=4 | R=5 | HxW=20x20<br>
 	Red: Device | Blue: WiFi | Green: WiFi-Range
 </p>
 
@@ -54,7 +54,7 @@ Course Project of Artificial Intelligence for a new Constraints Satisfaction Pro
 		<p align="center">
 			<img src=".readme/large_prob.png" height="300px"><br>
 			Problem: HxW=35x35 | D=12<br><br>
-			<img src=".readme/large_sol5a.png" height="300px"><br><br>
+			<img src=".readme/large_sol5a.png" height="300px"><br>
 			Solution1: K=9 | R=5<br>
 			<img src=".readme/large_sol5b.png" height="300px"><br>
 			Solution2: K=8 | R=5<br>
