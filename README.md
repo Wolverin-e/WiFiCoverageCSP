@@ -12,13 +12,14 @@ Course Project of Artificial Intelligence for a new Constraints Satisfaction Pro
 	1. [Necessity](#necessity-the-mother-of-invention)
 	2. [Problem Statement](#problem-statement)
 	3. [Mathematical Problem Statement](#mathematical-problem-statement)
-2. [Approach](#approach)
-3. [Results](#results)
+2. [Why Compute?](#why-compute)
+3. [Approach](#approach)
+4. [Results](#results)
 	1. [Small Grid](#small-grid)
 	2. [Medium Grid](#medium-grid)
 	3. [Large Grid](#large-grid)
-4. [Technical Hurdles](#technical-hurdles)
-5. [Getting Started](#getting-started)
+5. [Technical Hurdles](#technical-hurdles)
+6. [Getting Started](#getting-started)
 
 # Problem
 1. ## Necessity: The Mother of Invention
@@ -41,6 +42,21 @@ Course Project of Artificial Intelligence for a new Constraints Satisfaction Pro
 	- I need to come up with an arrangement of K routers such that,
 		- They belong to the same wireless network space
 		- Each device should be at some distance=d(≤R) from some router/repeater.
+
+# Why Compute?
+- Why compute, when a human can manually do this with some toys?
+	- Humans cannot always provide Minimum. For an Example let's look at the pictures below for a large 
+	- Just When You think that you have found a minimum,
+		<p align="center">
+			<img src=".readme/large_prob.png" height="200px"><br>
+			HxW=35x35 | D=12<br>
+			<img src=".readme/large_sol8a.png" height="200px"><br>
+			K=6 | R=8<br>
+			<img src=".readme/large_sol8b.png" height="200px"><br>
+			K=5 | R=8<br>
+			<img src=".readme/large_sol8c.png" height="200px"><br>
+			K=4 | R=8<br>
+		</p>
 
 # Approach
 - The approach was to describe this problem as constraints satisfaction problem(CSP).
@@ -109,6 +125,7 @@ Course Project of Artificial Intelligence for a new Constraints Satisfaction Pro
 			<img src=".readme/large_sol8c.png" height="400px"><br>
 			K=4 | R=8
 		</p>
+
 # Technical Hurdles
 - The Optimisation algorithms used are,
 	- Hill Climbing (Max-Variant)
