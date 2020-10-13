@@ -125,6 +125,7 @@ Course Project of Artificial Intelligence for a new Constraints Satisfaction Pro
 	```sh
 	$ git clone https://github.com/Wolverin-e/WiFiCoverageCSP.git
 	```
+
 - **Install**
 	```sh
 	# Install pipenv if you don't have it
@@ -134,6 +135,12 @@ Course Project of Artificial Intelligence for a new Constraints Satisfaction Pro
 	$ cd ./WiFiCoverageCSP
 	$ pipenv install
 	```
+
+- **Activate Environment**
+	```sh
+	$ pipenv shell
+	```
+
 - **Run**
 	- Read [This](https://github.com/Wolverin-e/WiFiCoverageCSP/blob/master/executor.py) for more info.
 	```sh
