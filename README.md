@@ -3,7 +3,7 @@
 Course Project of Artificial Intelligence for a new Constraints Satisfaction Problem
 
 <p align="center">
-	<img src=".readme/intro.gif" height="300px"> <br>
+	<img src=".readme/intro.gif" height="400px"> <br>
 	D=12 | K=4 | R=5 | HxW=20x20<br>
 	Red: Device | Blue: WiFi | Green: WiFi-Range
 </p>
