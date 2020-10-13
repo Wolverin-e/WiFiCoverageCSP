@@ -81,9 +81,27 @@ def less_discrete_evaluator(state):
 
         return visited
 
+    def get_mid_estimate(disconnected_component):
+        if not disconnected_component:
+            return None
+        a = 0
+        b = 0
+        for x, y in disconnected_component:
+            a += x
+            b += y
+
+        no_of_coords = len(disconnected_component)
+        return (a/no_of_coords, b/no_of_coords)
+
+    previous_disconnected_comp_cen = None
     while unvisited_nodes:
         visited = bfs(next(iter(unvisited_nodes)))
         unvisited_nodes.difference_update(visited)
-        val += 1
+        if not previous_disconnected_comp_cen:
+            previous_disconnected_comp_cen = get_mid_estimate(visited)
+        elif previous_disconnected_comp_cen:
+            next_disconnected_comp = get_mid_estimate(visited)
+            val += euclidean(previous_disconnected_comp_cen, next_disconnected_comp)
+            previous_disconnected_comp_cen = next_disconnected_comp
 
     return -val

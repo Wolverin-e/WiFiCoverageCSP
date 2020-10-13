@@ -19,8 +19,7 @@ class WiFiCoverageProblem:
         self.grid_height = grid_height
         self.grid_width = grid_width
         self.wifi_range = wifi_range
-        self.goal_val = (goal_val or
-                         (len(device_coords)+len(initial_wifi_coords)-1))
+        self.goal_val = goal_val
         self.device_coords = device_coords
         self.initial_state = State(wifi_coords=initial_wifi_coords)
 
@@ -45,7 +44,6 @@ class WiFiCoverageProblem:
             for y in range(self.grid_height)
         ]
 
-        print(state)
         for x, y in state.wifi_coords:
             grid[x][y] = 'X'
 
@@ -64,18 +62,20 @@ class WiFiCoverageProblem:
         plt.cla()
         x, y = zip(*self.device_coords)
         plt.plot(x, y, 'ro')
-        x, y = zip(*state.wifi_coords)
-        plt.plot(x, y, 'b^')
+        if state.wifi_coords:
+            x, y = zip(*state.wifi_coords)
+            plt.plot(x, y, 'b^')
         plt.axis([0, self.grid_width, 0, self.grid_height])
-        plt.grid()
+
+        # ax.set_xticks(np.arange(0, self.grid_width, 1))
+        # ax.set_yticks(np.arange(0, self.grid_height, 1))
+        # plt.grid()
 
         ax = plt.gca()
-        ax.set_xticks(np.arange(0, self.grid_width, 1))
-        ax.set_yticks(np.arange(0, self.grid_height, 1))
+        ax.set_aspect('equal', 'box')
         for coord in state.wifi_coords:
             circle = plt.Circle(coord, self.wifi_range, color='g', fill=False)
             ax.add_artist(circle)
-            ax.set_aspect('equal', 'box')
 
         if pause is not None:
             plt.show(block=False)
@@ -84,6 +84,7 @@ class WiFiCoverageProblem:
             plt.show()
 
     def show_debug(self, debug_state, show_graph=False, sleep=0.25):
+        print(debug_state)
         if show_graph:
             self._show_graph(debug_state, sleep)
         else:
@@ -91,3 +92,9 @@ class WiFiCoverageProblem:
 
     def show_final_sol(self, solution_state):
         self._show_graph(solution_state)
+
+    def show_problem(self, show_graph=False):
+        if show_graph:
+            self._show_graph()
+        else:
+            self._show_grid_in_terminal()

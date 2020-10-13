@@ -12,9 +12,13 @@ class HillClimbingEscapingShoulders:
         # CHECK IF CURRENT_NODE LOCAL MAXIMA
         parallel_steps_taken = 0
         while(True):
+            self.problem.show_debug(current, show_graph=True, sleep=0.01)
             if neighbour.val > current.val:
+                parallel_steps_taken = 0
                 current = neighbour
                 neighbour = current.get_max_valued_successor()
+            elif self.problem.check_constraints(current):
+                break
             elif ((neighbour.val == current.val) and
                     (parallel_steps_taken <= allowed_limit)):
                 parallel_steps_taken += 1
