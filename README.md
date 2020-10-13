@@ -3,8 +3,9 @@
 Course Project of Artificial Intelligence for a new Constraints Satisfaction Problem
 
 <p align="center">
-	<img src=".readme/large_sol5.png" height="400px"> <br>
-	D=12 | K=8 | R=8 | HxW=35x35
+	<img src=".readme/large_sol5b.png" height="400px"> <br>
+	D=12 | K=8 | R=8 | HxW=35x35<br>
+	Red: Device | Blue: WiFi | Green: WiFi-Range
 </p>
 
 # Index
@@ -45,17 +46,18 @@ Course Project of Artificial Intelligence for a new Constraints Satisfaction Pro
 
 # Why Compute?
 - Why compute, when a human can manually do this with some toys?
-	- Humans cannot always provide Minimum. For an Example let's look at the pictures below for a large 
-	- Just When You think that you have found a minimum,
+	- Just When You think that you have found a minimum!
+	- Let's take an example of a problem, with three solutions below, 'K' Representing the number of routers & 'R' Representing the wireless range of each router.
+	- Both solution1,2 are not easy to come up with manually, But let's say Solution1 is easy to come up with, Thought there exists a better solution Solution2 shown below it.
+	- That's why compute.
+	- Red: Device | Blue: WiFi | Green: WiFi-Range
 		<p align="center">
-			<img src=".readme/large_prob.png" height="200px"><br>
-			HxW=35x35 | D=12<br>
-			<img src=".readme/large_sol8a.png" height="200px"><br>
-			K=6 | R=8<br>
-			<img src=".readme/large_sol8b.png" height="200px"><br>
-			K=5 | R=8<br>
-			<img src=".readme/large_sol8c.png" height="200px"><br>
-			K=4 | R=8<br>
+			<img src=".readme/large_prob.png" height="300px"><br>
+			Problem: HxW=35x35 | D=12<br><br>
+			<img src=".readme/large_sol5a.png" height="300px"><br><br>
+			Solution1: K=9 | R=5<br>
+			<img src=".readme/large_sol5b.png" height="300px"><br>
+			Solution2: K=8 | R=5<br>
 		</p>
 
 # Approach
@@ -71,7 +73,7 @@ Course Project of Artificial Intelligence for a new Constraints Satisfaction Pro
 - So, This problem must be solved by transforming it into an optimisation problem & by applying optimisation algorithms.
 
 # Results
-
+- In Graphs-> Red: Device | Blue: WiFi | Green: WiFi-Range
 1. ## Small Grid
 	- Problem Visualisation:
 		- Devices={(2, 2), (2, 7), (9, 7), (9, 5), (9, 2)}
@@ -117,7 +119,7 @@ Course Project of Artificial Intelligence for a new Constraints Satisfaction Pro
 		</p>
 	- Solution1 Visualisation:
 		<p align="center">
-			<img src=".readme/large_sol5.png" height="400px"><br>
+			<img src=".readme/large_sol5b.png" height="400px"><br>
 			K=8 | R=5
 		</p>
 	- Solution2 Visualisation:
