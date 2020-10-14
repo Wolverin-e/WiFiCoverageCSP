@@ -200,26 +200,29 @@ Course Project of Artificial Intelligence for a new Constraints Satisfaction Pro
 	- There doesn't exist a solution & W doesn't find it in time T.
 
 # Project Setup
+
+- **Requirements**
+	- Python3
+
 - **Clone**
 	```sh
+	# Clone OR Download the zip & Extract the code into WiFiCoverageCSP folder
 	$ git clone https://github.com/Wolverin-e/WiFiCoverageCSP.git
 	```
 
 - **Install**
 	```sh
 	# Install pipenv if you don't have it
-	$ pip install pipenv
+	$ pip3 install pipenv
 	
 	# Change the Directory
 	$ cd ./WiFiCoverageCSP
-
+	
+	# Activate the Shell
+	$ pipenv shell
+	
 	# Install dependencies from Pipfile
 	$ pipenv install
-	```
-
-- **Activate Environment**
-	```sh
-	$ pipenv shell
 	```
 
 - **Run**
