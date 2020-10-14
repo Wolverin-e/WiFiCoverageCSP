@@ -82,6 +82,7 @@ Course Project of Artificial Intelligence for a new Constraints Satisfaction Pro
 			<img src=".readme/small_prob.png" height="400px">
 		</p>
 	- Solution Visualisation:
+		- WiFiCoords={(2, 5), (4, 2), (7, 2), (9, 5)}
 		<p align="center">
 			<img src=".readme/small_sol2.png" height="400px"><br>
 			K=8 | R=8
@@ -95,18 +96,21 @@ Course Project of Artificial Intelligence for a new Constraints Satisfaction Pro
 			<img src=".readme/mid_prob.png" height="400px"><br>
 		</p>
 	- Solution1 Visualisation:
+		- WiFiCoords={(4, 4), (4, 12), (11, 15), (15, 4), (17, 10)}
 		<p align="center">
 			<img src=".readme/mid_sol4.png" height="400px"><br>
 			K=5 | R=4
 		</p>
 	- Solution2 Visualisation:
+		- WiFiCoords={(3, 3), (8, 5), (6, 14), (16, 6)}
 		<p align="center">
 			<img src=".readme/mid_sol5.png" height="400px"><br>
 			K=4 | R=5
 		</p>
 	- Solution3 Visualisation:
+		- WiFiCoords={(7, 5), (7, 12), (16, 5)}
 		<p align="center">
-			<img src=".readme/mid_sol5.png" height="400px"><br>
+			<img src=".readme/mid_sol6.png" height="400px"><br>
 			K=3 | R=6
 		</p>
 
@@ -118,11 +122,13 @@ Course Project of Artificial Intelligence for a new Constraints Satisfaction Pro
 			<img src=".readme/large_prob.png" height="400px"><br>
 		</p>
 	- Solution1 Visualisation:
+		- WiFiCoords={(6, 3), (5, 24), (10, 3), (15, 6), (18, 18), (22, 27), (24, 4), (26, 12)}
 		<p align="center">
 			<img src=".readme/large_sol5b.png" height="400px"><br>
 			K=8 | R=5
 		</p>
 	- Solution2 Visualisation:
+		- WiFiCoords={(9, 3), (24, 8), (10, 22), (24, 24)}
 		<p align="center">
 			<img src=".readme/large_sol8c.png" height="400px"><br>
 			K=4 | R=8
