@@ -8,7 +8,7 @@ class RandomRestartEscapingShoulders:
         self.esc_shoulder_solver = HillClimbingEscapingShoulders(problem)
 
     def solve(self):
-        self.problem.show_problem(show_graph=True)
+        # self.problem.show_problem(show_graph=True)
         while(True):
             random_state = self.problem.get_random_state()
             probable_solution = self.esc_shoulder_solver.solve(
