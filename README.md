@@ -4,8 +4,8 @@ Course Project of Artificial Intelligence for a new Constraints Satisfaction Pro
 
 <p align="center">
 	<img src=".readme/intro.gif" height="400px"> <br>
-	D=12 | K=4 | R=5 | HxW=20x20<br>
-	Red: Device | Blue: WiFi | Green: WiFi-Range
+	Red: Device | Blue: WiFi | Green: WiFi-Range<br>
+	Execution For: D=12 | K=4 | R=5 | HxW=20x20<br>
 </p>
 
 # Index
@@ -13,14 +13,17 @@ Course Project of Artificial Intelligence for a new Constraints Satisfaction Pro
 	1. [Necessity](#necessity-the-mother-of-invention)
 	2. [Problem Statement](#problem-statement)
 	3. [Mathematical Problem Statement](#mathematical-problem-statement)
+	4. [Novelty](#novelty)
 2. [Why Compute?](#why-compute)
 3. [Approach](#approach)
-4. [Results](#results)
+4. [Technical Challenges](#technical-challenges)
+5. [Analysis](#analysis)
+6. [Results](#results)
 	1. [Small Grid](#small-grid)
 	2. [Medium Grid](#medium-grid)
 	3. [Large Grid](#large-grid)
-5. [Technical Hurdles](#technical-hurdles)
-6. [Getting Started](#getting-started)
+7. [Conclusions](#conclusions)
+8. [Project Setup](#project-setup)
 
 # Problem
 1. ## Necessity: The Mother of Invention
@@ -43,12 +46,18 @@ Course Project of Artificial Intelligence for a new Constraints Satisfaction Pro
 	- I need to come up with an arrangement of K routers such that,
 		- They belong to the same wireless network space
 		- Each device should be at some distance=d(≤R) from some router/repeater.
+4. ## Novelty
+	- I was not able to find
+		- any problem exactly similar to this problem
+		- any solution to this problem
+	- So, this is something new. (According to my knowledge base)
+	- Why should we compute this is shown below(↓) in detail.
 
 # Why Compute?
 - Why compute, when a human can manually do this with some toys?
 	- Just When You think that you have found a minimum!
-	- Let's take an example of a problem, with three solutions below, 'K' Representing the number of routers & 'R' Representing the wireless range of each router.
-	- Both solution1,2 are not easy to come up with manually, But let's say Solution1 is easy to come up with, Thought there exists a better solution Solution2 shown below it.
+	- Let's take an example of a problem, with 2 solutions below, 'K' Representing the number of routers & 'R' Representing the wireless range of each router.
+	- Solution1 is easy to come up with, but Solution2 is not easy to find, which may require a good amount of computation.
 	- That's why compute.
 	- Red: Device | Blue: WiFi | Green: WiFi-Range
 		<p align="center">
@@ -82,7 +91,7 @@ Course Project of Artificial Intelligence for a new Constraints Satisfaction Pro
 	- To come up with a state evaluation function
 	- To Come up with a state.max_valued_neighbour() function for different arrangements of the wifis resulting from some transformation on the current state.
 
-- I implemented theseꜛ functions with the ideas below,
+- I implemented these(↑) functions with the ideas below(↓),
 1. ## state.evaluate()
 	- Approach1
 		- Define a variable **val**
@@ -108,11 +117,17 @@ Course Project of Artificial Intelligence for a new Constraints Satisfaction Pro
 		- return **-val** (Algorithm is of Maximiser variant)
 		- Final Goal: **val=0**
 		- This approact is better than the previous, because in this approach while going through the successors, unlike previous approach **val** precisely defines, how much are you closer to the goal. 
-2. ## state.get_max_valued_function()
-	- For, this function I defined some allowed actuations on each WiFi coordinate=**direction_vectors**,
+2. ## state.get_max_valued_neighbour()
+	- For this function I defined some allowed actuations on each WiFi coordinate=**direction_vectors**,
 	- The idea is to try out all the possible combinations on each wifi-coordinate & return the maximum valued one. **|combinations| = |direction_vectors|^K**
 	- This approach is computationally very expensive.
 	- It's not the best approach, there may exist a better one, but it was 100% sure to work.
+
+# Analysis
+- Since randomness is involved, the exact Time complexity cannot be found.
+- Due to optimisation algorithms, a particular state is under observation at a time, So the Space complexity is not that high, It will be **O(K)**.
+- As you can see the performance bottleneck is the function **state.get_max_valued_neighbour()**, which is exponential in nature. **|combinations| = |direction_vectors|^K**, which may be the major factor in time complexity of the algorithm.
+- **Appying Genetic algorithms** may or may not be a better than this approach, because it wouldn't have to go through all the neighbours of the current state & randomisation is a lot in that algorithm, respectively.
 
 # Results
 - In Graphs-> Red: Device | Blue: WiFi | Green: WiFi-Range
@@ -176,7 +191,15 @@ Course Project of Artificial Intelligence for a new Constraints Satisfaction Pro
 			K=4 | R=8
 		</p>
 
-# Getting Started
+# Conclusions
+- 5$ worth of computation is better than buying a 50$ worth of extra machine.
+- Let's define this Problem-Solver W.
+- For a given Problem (HxW, K, R, Devices), given 3 scenarios are possible due to the randomness of the algorithm.
+	- There exists a solution & W finds it in time T.
+	- There exists a solution & W doesn't find it in time T.
+	- There doesn't exist a solution & W doesn't find it in time T.
+
+# Project Setup
 - **Clone**
 	```sh
 	$ git clone https://github.com/Wolverin-e/WiFiCoverageCSP.git
