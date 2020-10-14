@@ -2,7 +2,6 @@ from .state import State
 from .evaluator import less_discrete_evaluator
 import random
 import matplotlib.pyplot as plt
-import numpy as np
 
 
 class WiFiCoverageProblem:
