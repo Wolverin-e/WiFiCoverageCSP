@@ -27,8 +27,7 @@ Course Project of Artificial Intelligence for a new Constraints Satisfaction Pro
 
 # Problem
 1. ## Necessity: The Mother of Invention
-	- I was required to do a course project in artificial intelligence.
-	- It's purely hypothetical situation.
+	- Below given is a purely hypothetical situation.
 	- In the Lockdown, I wanted to buy a broadband internet connection & have a wireless router to span the access range across the whole house.
 	- Since I have a bigger house space & my house had concealed and jammed wiring (without LAN cables); instead of having a single long-ranged (costly) wireless router whose range fades across the boundary, I thought of having multiple wireless routers in wireless bridge mode with each other & belonging to the same wireless network space. Also, a goal was to minimise the cost.
 	- Instead of multiple wireless routers, I can also use A main router with multiple range extenders belonging to the same wireless network. (Analogy is the same)
@@ -124,9 +123,10 @@ Course Project of Artificial Intelligence for a new Constraints Satisfaction Pro
 	- It's not the best approach, there may exist a better one, but it was 100% sure to work.
 
 # Analysis
-- Since randomness is involved, the exact Time complexity cannot be found.
 - Due to optimisation algorithms, a particular state is under observation at a time, So the Space complexity is not that high, It will be **O(K)**.
+- Since randomness is involved, the exact Time complexity of many components cannot be found.
 - As you can see the performance bottleneck is the function **state.get_max_valued_neighbour()**, which is exponential in nature. **|combinations| = |direction_vectors|^K**, which may be the major factor in time complexity of the algorithm.
+- For smaller HxW, K this approach can provide a solution in reasonable amount of time.
 - **Appying Genetic algorithms** may or may not be a better than this approach, because it wouldn't have to go through all the neighbours of the current state & randomisation is a lot in that algorithm, respectively.
 
 # Results
