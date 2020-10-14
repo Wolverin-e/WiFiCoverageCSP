@@ -72,6 +72,48 @@ Course Project of Artificial Intelligence for a new Constraints Satisfaction Pro
 - Due to high degrees of H, W, K - Recursion & Backtracking is not a good option.
 - So, This problem must be solved by transforming it into an optimisation problem & by applying optimisation algorithms.
 
+# Technical Challenges
+- The Optimisation algorithms used are,
+	- Hill Climbing (Max-Variant)
+		- With Random Restart
+	- Escaping Shoulders (Max-Variant)
+		- With Random Restarts
+- After defining the state, the main tasks were,
+	- To come up with a state evaluation function
+	- To Come up with a state.max_valued_neighbour() function for different arrangements of the wifis resulting from some transformation on the current state.
+
+- I implemented theseꜛ functions with the ideas below,
+1. ## state.evaluate()
+	- Approach1
+		- Define a variable **val**
+		- Add the number of devices for which EuclideanDist from some WiFi is d(≤R), to **val**, goal is **val=D**.
+		- Run BFS on the graph G(V, E) until all the nodes are visited exactly once(like in a tree). The BFS is for obtaining all the disconnected components one by one from the graph in the form of a tree, & add the len(found_component)-1 to **val** for each component. 
+		- Here idea is to search each disconnected component of the graph to form a tree & since it's a **m** node tree, the number of edges in it must be **m-1**, so this way our goal is to connect the whole graph, or in other words, BFS returns only one disconnected component with, **m-1 = |V|-1**.
+		- Return **val** from this function.
+		- Final Goal: **val=|Devices|+|V|-1**
+
+	- Approach2
+		- Define a variable **val**
+		- For Each device
+			- If EuclideanDist of device from some WiFi is d≤R: Then do nothing.
+			- Else: Add **d-R** to **val**; **d**: EuclideanDist from a WiFi which is closest to the device.
+		- This way we want **val** to be 0 for devices.
+		- Define another variable **previousComponent=None**
+		- Now Use the same BFS in the previous approach, except this time, for each disconnected component returned by BFS defined as **currentlyFoundComponent**,
+			- If previousComponent==None: Then do nothing
+			- Else:
+				- add EuclideanDist of approximate centroids of **previousComponent** & **currentlyFoundComponent**
+				- **previousComponent=currentlyFoundComponent**
+		- This way for connectivity, we want to have only one and only disconnected-component or may I say, connected-Graph.
+		- return **-val** (Algorithm is of Maximiser variant)
+		- Final Goal: **val=0**
+		- This approact is better than the previous, because in this approach while going through the successors, unlike previous approach **val** precisely defines, how much are you closer to the goal. 
+2. ## state.get_max_valued_function()
+	- For, this function I defined some allowed actuations on each WiFi coordinate=**direction_vectors**,
+	- The idea is to try out all the possible combinations on each wifi-coordinate & return the maximum valued one. **|combinations| = |direction_vectors|^K**
+	- This approach is computationally very expensive.
+	- It's not the best approach, there may exist a better one, but it was 100% sure to work.
+
 # Results
 - In Graphs-> Red: Device | Blue: WiFi | Green: WiFi-Range
 1. ## Small Grid
@@ -134,17 +176,6 @@ Course Project of Artificial Intelligence for a new Constraints Satisfaction Pro
 			K=4 | R=8
 		</p>
 
-# Technical Hurdles
-- The Optimisation algorithms used are,
-	- Hill Climbing (Max-Variant)
-		- With Random Restart
-	- Escaping Shoulders (Max-Variant)
-		- With Random Restarts
-- The Main difficulties faced was during,
-	- Coming up with the state evaluation function
-	- Coming up with a state.max_valued_neighbour function
-
-
 # Getting Started
 - **Clone**
 	```sh
@@ -155,9 +186,11 @@ Course Project of Artificial Intelligence for a new Constraints Satisfaction Pro
 	```sh
 	# Install pipenv if you don't have it
 	$ pip install pipenv
+	
+	# Change the Directory
+	$ cd ./WiFiCoverageCSP
 
 	# Install dependencies from Pipfile
-	$ cd ./WiFiCoverageCSP
 	$ pipenv install
 	```
 
@@ -167,7 +200,7 @@ Course Project of Artificial Intelligence for a new Constraints Satisfaction Pro
 	```
 
 - **Run**
-	- Read [This](https://github.com/Wolverin-e/WiFiCoverageCSP/blob/master/executor.py) for more info.
+	- Read [executor.py](https://github.com/Wolverin-e/WiFiCoverageCSP/blob/master/executor.py) for more info.
 	```sh
 	# Check executor.py For By Default Runner
 	$ python3 executor.py
