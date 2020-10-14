@@ -101,7 +101,10 @@ def less_discrete_evaluator(state):
             previous_disconnected_comp_cen = get_mid_estimate(visited)
         elif previous_disconnected_comp_cen:
             next_disconnected_comp = get_mid_estimate(visited)
-            val += euclidean(previous_disconnected_comp_cen, next_disconnected_comp)
+            val += euclidean(
+                previous_disconnected_comp_cen,
+                next_disconnected_comp
+            )
             previous_disconnected_comp_cen = next_disconnected_comp
 
     return -val
