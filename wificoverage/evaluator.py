@@ -13,8 +13,10 @@ def discrete_evaluator(state):
     # WIFI-NETWORK-EVALUATION
     unvisited_nodes = set(state.wifi_coords)
 
-    def get_neighbours(a): return [
-        x for x in unvisited_nodes if euclidean(x, a) <= 2*state.wifi_range]
+    def get_neighbours(a):
+        return [
+            x for x in unvisited_nodes if euclidean(x, a) <= 2*state.wifi_range
+        ]
 
     def bfs(start_node):
         visited = set()
@@ -63,8 +65,10 @@ def less_discrete_evaluator(state):
     # WIFI-NETWORK-EVALUATION
     unvisited_nodes = set(state.wifi_coords)
 
-    def get_neighbours(a): return [
-        x for x in unvisited_nodes if euclidean(x, a) <= 2*state.wifi_range]
+    def get_neighbours(a):
+        return [
+            x for x in unvisited_nodes if euclidean(x, a) <= 2*state.wifi_range
+        ]
 
     def bfs(start_node):
         visited = set()
