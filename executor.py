@@ -12,7 +12,7 @@ from algorithms.hillclimbing import (
     RandomRestartEscapingShoulders
 )
 
-problem = get_small_problem_less_descrete_eval()
+problem = get_medium_problem4_less_descrete_eval()
 solver = RandomRestartEscapingShoulders
 
 problem_solver = solver(problem)
